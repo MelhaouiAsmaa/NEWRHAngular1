@@ -1,0 +1,46 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Créer Charge Département</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="validationCustom03">Charges:</label>
+      <select  class="form-control form-control-lg"  id="validationCustom03" required [(ngModel)]="chargesociete.pkchargesociete.charge.idCharge" name="id" >
+        <option value="">Charge...</option>
+        <option *ngFor="let c of charges| async"  [value]="c.idCharge">{{c.idCharge}}- {{c.typeCharge}}</option>
+     </select>
+      </div>
+      <div class="form-group">
+        <label for="validationCustom02">Sociétés:</label>
+      <select   class="form-control form-control-lg"  id="validationCustom02"  required   [(ngModel)]="chargesociete.pkchargesociete.societe.idsociete" name="pkContrat.employee.matricule">
+       <option value="">Société...</option>
+        <option  *ngFor="let s of societes | async" value={{s.idsociete}}>{{s.idsociete}}-{{s.raison_social}}</option>
+     </select>
+      </div>
+    
+      <div class="form-group">
+       
+        <label for="date2">Date_Début</label>
+        <input type="date" class="form-control" id="date2" required   [(ngModel)]="chargesociete.pkchargesociete.datedebut" name="date_Contrat">
+      </div>
+      <div class="form-group">
+       
+        <label for="date1">Date_Fin</label>
+        <input type="date" class="form-control" id="date1" required   [(ngModel)]="chargesociete.date_fin" name="pkContrat.date_Contrat">
+      </div>
+      
+      <div class="form-group">
+        <label for="date3">Montant</label>
+        <input type="text" class="form-control" id="date3" required [(ngModel)]="chargesociete.montant" name="date_Fin">
+      </div>
+     
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+  
+ <button (click)="gotoList()" class="btn btn-info">Retour</button>
+
+ <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
+

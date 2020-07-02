@@ -1,0 +1,37 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste Des Contrats pour les Employés </h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Type_Contrat</th>
+          <th>Employé</th>
+
+          <th>Date_Contrat</th>
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contrat of contrats | async">
+          <td>{{contrat.pkContrat.contrat.id_typeC}}{{contrat.pkContrat.contrat.libelle_C}}</td>
+          <td>{{contrat.pkContrat.employee.matricule }}-{{contrat.pkContrat.employee.nom}}
+            {{contrat.pkContrat.employee.prenom}}</td>
+          <td>{{contrat.pkContrat.date_Contrat}}</td>
+
+          <td>
+            <button (click)="deleteContrat(contrat.pkContrat)" class="btn btn-danger">Supprimer</button>
+            <button
+              (click)="DetailTypeContrat(contrat.pkContrat.contrat.id_typeC,contrat.pkContrat.employee.matricule,contrat.pkContrat.date_Contrat)"
+              class="btn btn-info" style="margin-left: 10px">Detailles</button>
+            <button
+              (click)="ContratUpdate(contrat.pkContrat.contrat.id_typeC,contrat.pkContrat.employee.matricule,contrat.pkContrat.date_Contrat)"
+              class="btn btn-primary" style="margin-left: 10px">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

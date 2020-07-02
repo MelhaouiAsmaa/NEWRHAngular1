@@ -1,0 +1,151 @@
+<ng-container *ngIf="userinterface || !isLoggedIn; else admintemp">
+
+  <div class="container">
+    <header class="jumbotron">
+      <p>Acces refuse</p>
+    </header>
+  </div>
+
+</ng-container>
+
+
+<ng-template #admintemp>
+
+  <h2>Employés</h2>
+  <!-- <button class="btn">
+    <a [routerLink]="['/employees/add']" routerLinkActive="active"> + Nouveau employé</a>
+  </button> -->
+
+
+  <div class="form-group" *ngIf="!mod">
+    <select #t class="form-control" (change)="onSelect(t.value)">
+      <option disabled selected="true">--Choisissez un critère--</option>
+      <option *ngFor="let st of searchText; let i = index" [value]="st.name">
+        {{st.name}}
+      </option>
+    </select>
+    <br>
+    <input type="text" class="form-control" placeholder="chercher par critère..." [(ngModel)]="searchText1" />
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Annee d'expérience</th>
+            <!-- <th>dep</th> -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let employee of employees | async"> -->
+          <ng-container *ngIf="mod; else elseadminpriv">
+            <tr *ngFor="let employee of employees  | filter : searchText1 : valeur">
+              <ng-container *ngIf="!employeconn.nomdep || employee.nomdep === employeconn.nomdep">
+                <td>{{employee.nom}}</td>
+                <td>{{employee.prenom}}</td>
+                <td>{{employee.annee_experience}} ans</td>
+                <td hidden>{{employee.nomdep}}</td>
+
+                <td>
+                  <button title="Modifier" mat-button (click)="updateEmployee(employee.matricule)">
+                    <span class="material-icons">edit</span></button>
+                  <button title="Détails" mat-button (click)="employeeDetails(employee.matricule)">
+                    <span class="material-icons">more_horiz</span></button>
+                  <button title="Archiver" mat-button (click)="openDialog(employee.matricule)">
+                    <span class="material-icons">delete</span></button>
+
+                  <ng-container *ngIf="employee.actualeq === true || !employee.actualfct; else elseTemplate">
+
+                    <button title="Ajouter à une équipe" mat-button disabled (click)="addequipe(employee.matricule)">
+                      <span class="material-icons">group_add</span></button>
+
+                  </ng-container>
+
+                  <ng-template #elseTemplate>
+                    <button title="Ajouter à une équipe" mat-button (click)="addequipe(employee.matricule)">
+                      <span class="material-icons">group_add</span></button>
+                  </ng-template>
+
+                  <ng-container *ngIf="employee.actualfct === true; else elseTemplate1">
+
+                    <button title="Ajouter à une fonction" mat-button disabled
+                      (click)="addfonction(employee.matricule)">
+                      <span class="material-icons">add_box</span></button>
+
+                  </ng-container>
+
+                  <ng-template #elseTemplate1>
+                    <button title="Ajouter à une fonction" mat-button (click)="addfonction(employee.matricule)">
+                      <span class="material-icons">add_box</span></button>
+                  </ng-template>
+
+                  <button title="Congé" mat-button (click)="CongeList(employee.matricule)">
+                    <span class="material-icons">airplanemode_active</span>
+                  </button>
+
+                  <button title="Charge" mat-button (click)="chargeList(employee.matricule)">
+                    <span class="material-icons">attach_money</span></button>
+                </td>
+              </ng-container>
+            </tr>
+          </ng-container>
+          <ng-template #elseadminpriv>
+            <tr *ngFor="let employee of employees  | filter : searchText1 : valeur">
+              <td>{{employee.nom}}</td>
+              <td>{{employee.prenom}}</td>
+              <td>{{employee.annee_experience}} ans</td>
+              <td hidden>{{employee.nomdep}}</td>
+
+              <td>
+                <button title="Modifier" mat-button (click)="updateEmployee(employee.matricule)">
+                  <span class="material-icons">edit</span></button>
+                <button title="Détails" mat-button (click)="employeeDetails(employee.matricule)">
+                  <span class="material-icons">more_horiz</span></button>
+                <button title="Archiver" mat-button (click)="openDialog(employee.matricule)">
+                  <span class="material-icons">delete</span></button>
+
+                <ng-container *ngIf="employee.actualeq === true || !employee.actualfct; else elseTemplate">
+
+                  <button title="Ajouter à une équipe" mat-button disabled (click)="addequipe(employee.matricule)">
+                    <span class="material-icons">group_add</span></button>
+
+                </ng-container>
+
+                <ng-template #elseTemplate>
+                  <button title="Ajouter à une équipe" mat-button (click)="addequipe(employee.matricule)">
+                    <span class="material-icons">group_add</span></button>
+                </ng-template>
+
+                <ng-container *ngIf="employee.actualfct === true; else elseTemplate1">
+
+                  <button title="Ajouter à une fonction" mat-button disabled (click)="addfonction(employee.matricule)">
+                    <span class="material-icons">add_box</span></button>
+
+                </ng-container>
+
+                <ng-template #elseTemplate1>
+                  <button title="Ajouter à une fonction" mat-button (click)="addfonction(employee.matricule)">
+                    <span class="material-icons">add_box</span></button>
+                </ng-template>
+
+                <button title="Congé" mat-button (click)="CongeList(employee.matricule)">
+                  <span class="material-icons">airplanemode_active</span>
+                </button>
+
+                <button title="Charge" mat-button (click)="chargeList(employee.matricule)">
+                  <span class="material-icons">attach_money</span></button>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</ng-template>

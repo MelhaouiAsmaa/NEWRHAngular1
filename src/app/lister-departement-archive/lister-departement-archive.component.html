@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste des Départements</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id département</th>
+          <th>Nom département</th>
+          <th>Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departement of departements">
+          <td>{{departement.idDepartement}}</td>
+          <td>{{departement.nomDepartement}}</td>
+
+          <td>
+            <button (click)="departementDesarchiver(departement.idDepartement)" class="btn btn-warning"
+              style="margin-left: 10px">Désarchiver</button>
+            <button (click)="departementDetails(departement.idDepartement)" class="btn btn-info"
+              style="margin-left: 10px">Detailles</button>
+            <button (click)="departementUpdate(departement.idDepartement)" class="btn btn-primary"
+              style="margin-left: 10px">Modofier</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

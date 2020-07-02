@@ -1,0 +1,53 @@
+<h2 style="text-align: center;">Département</h2>
+<hr/>
+<div *ngIf="departement" style="margin-left: 100px;">
+  <div>
+    <label><b>Id_Département: </b></label> {{departement.idDepartement}}
+  </div>
+  <div>
+    <label><b>Nom Département: </b></label> {{departement.nomDepartement}}
+  </div>
+
+  <div *ngIf="equipe| async">
+    <label><b>Equipes: </b></label>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id_Equipe</th>
+        <th>Nom_Equipe</th>
+    
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of equipe | async">
+        <td>{{e.idEquipe}}</td>
+        <td>{{e.nomEquipe}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="responsable">
+    <label><b>Résponsables: </b></label>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Employés</th>
+        <th>Date_Début</th>
+        <th>Date_Fin</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of responsable | async">
+        <td>{{r.pk_responsable.employee.matricule}}-{{r.pk_responsable.employee.nom}} {{r.pk_responsable.employee.prenom}}</td>
+        <td>{{r.pk_responsable.date_debut_res | date:'yyyy-MM-dd'}}</td>
+        <td>{{r.date_fin_res | date:'yyyy-MM-dd'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<br>
+<br>
+<button  (click)="redirect()" style="margin-left:700px;"class="btn btn-primary">Retourner à  la liste des employés</button><br>

@@ -1,0 +1,32 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Modifier Charge Département</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    
+      <div class="form-group">
+       
+        <label for="date2">Date_Début</label>
+        <input type="date" class="form-control" id="date2" required   [(ngModel)]="chargesociete.pkchargesociete.datedebut" name="date_Contrat">
+      </div>
+      <div class="form-group">
+       
+        <label for="date1">Date_Fin</label>
+        <input type="date" class="form-control" id="date1" required   [(ngModel)]="chargesociete.date_fin" name="pkContrat.date_Contrat">
+      </div>
+      
+      <div class="form-group">
+        <label for="date3">Montant</label>
+        <input type="text" class="form-control" id="date3" required [(ngModel)]="chargesociete.montant" name="date_Fin">
+      </div>
+     
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+  
+ <button (click)="gotoList()" class="btn btn-info">Retour</button>
+
+ <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
+

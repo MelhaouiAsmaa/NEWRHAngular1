@@ -1,0 +1,32 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Liste Les sociétés</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id_Société</th>
+            <th>Nom Société</th>
+            <th>Type</th>
+            <th>Siège</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of societes | async">
+            <td>{{s.idsociete}}</td>
+            <td>{{s.raison_social}}</td>
+      <td>{{s.type}}</td>
+      <td>{{s.headquarter}}</td>
+            <td>
+                <button (click)="archive(s.idsociete)" class="btn btn-danger">Supprimer</button>
+                <button (click)="update(s.idsociete)" class="btn btn-info" style="margin-left: 10px">Modifier</button>
+                <!--<button (click)="departementUpdate(departement.iddepartement)" class="btn btn-primary" style="margin-left: 10px">Modofier</button>
+            </td>
+        -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

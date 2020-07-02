@@ -1,0 +1,28 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Modifier Pointage Employé</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="validationCustom02">Employé:</label>
+      {{pointage.employee.matricule}}-{{pointage.employee.nom}} {{pointage.employee.prenom}}
+
+    </div>
+    <div class="form-group">
+      <label for="validationCustom03">Mois</label>
+      <input type="text" class="form-control" id="validationCustom03" required [(ngModel)]="pointage.mois" name="lmo">
+    </div>
+    <div class="form-group">
+      <label for="validationCustom04">Année</label>
+      <input type="text" class="form-control" id="validationCustom04" required [(ngModel)]="pointage.annee"
+        name="salaire_initial">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+
+
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

@@ -1,0 +1,748 @@
+<!-- <app-navbar></app-navbar> -->
+<!-- <app-sidebar></app-sidebar>
+
+       
+            <div class="container main">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div> -->
+
+<!-- <app-sidebar></app-sidebar>
+    <router-outlet></router-outlet> -->
+
+
+<!-- <div class="row main">
+    <div class="col-md-4"> -->
+<!-- <div class="sidebar">
+    <ul class="list-group sidebar__menu">
+        <li><a routerLink="departement" routerLinkActive="active" class="list-group-item">Département</a></li>
+        <li><a routerLink="employees" routerLinkActive="active" class="list-group-item">Salarié</a></li>
+        <li><a routerLink="conge" routerLinkActive="active" class="list-group-item">Congé</a></li>
+        <li><a routerLink="fonction" routerLinkActive="active" class="list-group-item">Fonctions</a></li>
+        <li><a routerLink="equipe" routerLinkActive="active" class="list-group-item">Equipe</a></li>
+    </ul>
+    
+</div> -->
+<!-- </div>
+</div> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark">
+      <!-- left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <!-- <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+            <i class="fa fa-bars"></i>
+        </a> -->
+          <button class="navbar-toggler sidebar-toggler" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </li>
+        <!-- <li class="nav-item d-none d-sm-inline-block">
+          <a href="index3.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+        <li class="nav-item">
+          <a href="" class="nav-link">Home </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="#" class="nav-link" routerLink="reporting">Admin Board</a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="showModeratorBoard">
+          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+        </li> -->
+        <li class="nav-item" *ngIf="showAdminBoard || showModeratorBoard">
+          <a (click)="onUser()" class="nav-link">User</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <!-- <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li> -->
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
+
+      <!-- SEARCH FORM -->
+      <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <img src="../../assets/img/hrPath.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+        <span class="brand-text font-weight-light">HR Path</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar" *ngIf="isLoggedIn">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="../../assets/img/avatardefault.png" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">{{prenom}} {{nom}}</a>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            <li class="nav-item has-treeview" *ngIf="!mod">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-building"></i>
+                <p>
+                  Département
+                  <i class="right fa fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="departement/add" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Créer département</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="departement" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Liste département</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="listerDepartementArchive" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Archive département</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-user-circle"></i>
+                <p>
+                  Employé
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="employees/add" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Ajouter employé</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="employees" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Liste des employés</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="archiveremployee" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Archive employés</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a routerLink="conge" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon fa fa-plane"></i>
+                <p>
+                  Congé
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/forms/validation.html" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Validation</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a href="#" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon fa fa-group"></i>
+                <p>
+                  Equipe
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="equipe/add" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Ajouter équipe</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="equipe" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Liste équipe</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="archiveequipe" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Archive équipe</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-suitcase"></i>
+                <p>
+                  Fonction
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="fonction/add" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Ajouter fonction</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="fonction" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Liste fonction</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="archivefonction" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Archive fonction</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview " *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-copy"></i>
+                <p>
+                  Type Contrat</p>
+                <i class="right fa fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="creerTypeContrat" class="nav-link">
+
+                    <p>Ajouter Type Contrat</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listertypeContrat" class="nav-link">
+
+                    <p>Afficher Contrat</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listerArchivetypeContrat" class="nav-link">
+
+                    <p>Lister Archive Types Contrat</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="nav-item has-treeview " *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="fa fa-circle nav-icon"></i>
+                <p>Pointage</p>
+                <i class="right fa fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="createPointage" class="nav-link">
+
+                    <p>Créer pointage</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listerpointage" class="nav-link">
+
+                    <p>Liste pointage</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listerpointagearchive" class="nav-link">
+
+                    <p>Archive pointage</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-paperclip"></i>
+                <p>
+                  Contrat Employé
+                  <i class="right fa fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="creerContrat" class="nav-link">
+
+                    <p>Affecter Contrat à un employé </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listerContrat" class="nav-link">
+                    <p>Lister Contrat Employé </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listercontratarchive" class="nav-link">
+
+                    <p>Lister Contrat Archivés</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="booltemp">
+              <a (click)="Addconge(matricule)" class="nav-link">
+                <i class="nav-icon fa fa-plane"></i>
+                <p>
+                  Demander congé
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="booltemp">
+              <a (click)="EmployeeConge(matricule)" class="nav-link">
+                <i class="nav-icon fa fa-plane"></i>
+                <p>
+                  Mes congés
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-university"></i>
+                <p>
+                  Société
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="createsociete" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Ajouter Société</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="listersociete" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Liste Sociétés</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="listersocietearchive" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Lister Sociétés archivés</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item has-treeview" *ngIf="admin">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-money"></i>
+                <p>
+                  Charges
+                  <i class="right fa fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="createCharge" class="nav-link">
+
+                    <p>Créer Charge</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listerChargeNonArchive" class="nav-link">
+
+                    <p>Liste Charges </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="listerChargeArchive" class="nav-link">
+
+                    <p>Archive Charges</p>
+                  </a>
+                </li>
+                <li class="nav-item has-treeview" *ngIf="admin">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-circle text-warning"></i>
+                    <p>
+                      Charges Départements
+                      <i class="fa fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a routerLink="createchargedepartement" class="nav-link">
+                        <i></i>
+                        <p>Ajouter charge département </p>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a routerLink="listerChargeDepartementcourant" class="nav-link">
+                        <i></i>
+                        <p>Liste charges département </p>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a routerLink="listerchargedepartementarchive" class="nav-link">
+                        <i></i>
+                        <p>Archive charges département </p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item has-treeview" *ngIf="admin">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-circle text-info"></i>
+                    <p>
+                      Charges Société
+                      <i class="fa fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a routerLink="createchargesociete" class="nav-link">
+                        <i></i>
+                        <p>Ajouter Charge Société</p>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a routerLink="listerchargesociete" class="nav-link">
+                        <i></i>
+                        <p>Liste Charges Sociétés</p>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a routerLink="listerchargesocietearchive" class="nav-link">
+                        <i></i>
+                        <p>Archive Charges Sociétés</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-header">EXAMPLES</li>
+            <li class="nav-item">
+              <a href="pages/calendar.html" class="nav-link">
+                <i class="nav-icon fa fa-calendar"></i>
+                <p>
+                  Calendar
+                  <span class="badge badge-info right">2</span>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/gallery.html" class="nav-link">
+                <i class="nav-icon fa fa-image"></i>
+                <p>
+                  Gallery
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-envelope"></i>
+                <p>
+                  Mailbox
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/mailbox/mailbox.html" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Inbox</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-book"></i>
+                <p>
+                  Pages
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="pages/examples/invoice.html" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Invoice</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-plus-square"></i>
+                <p>
+                  Extras
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+              </ul>
+            </li>
+            <li class="nav-header">MISCELLANEOUS</li>
+            <li class="nav-item">
+              <a href="https://adminlte.io/docs/3.0/" class="nav-link">
+                <i class="nav-icon fa fa-file"></i>
+                <p>Documentation</p>
+              </a>
+            </li>
+            <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fa fa-circle nav-icon"></i>
+                <p>Level 1</p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-circle"></i>
+                <p>
+                  Level 1
+                  <i class="right fa fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Level 2</p>
+                  </a>
+                </li>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>
+                      Level 2
+                      <i class="right fa fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="fa fa-dot-circle nav-icon"></i>
+                        <p>Level 3</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="fa fa-dot-circle nav-icon"></i>
+                        <p>Level 3</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="fa fa-dot-circle nav-icon"></i>
+                        <p>Level 3</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Level 2</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fa fa-circle nav-icon"></i>
+                <p>Level 1</p>
+              </a>
+            </li>
+            <li class="nav-header">LABELS</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-circle text-danger"></i>
+                <p class="text">Important</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-circle text-warning"></i>
+                <p>Warning</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-circle text-info"></i>
+                <p>Informational</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <br>
+      <h2 style="text-align: center;">Hr Path</h2>
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <!-- /.content -->
+    </div>
+
+
+    <!-- /.content-wrapper -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- <script src="plugins/jquery-ui/jquery-ui.min.js"></script> -->
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+
+  </script>
+  <!-- Bootstrap 4 -->
+  <!-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <!-- ChartJS -->
+  <!-- <script src="plugins/chart.js/Chart.min.js"></script> -->
+  <!-- Sparkline -->
+  <!-- <script src="plugins/sparklines/sparkline.js"></script> -->
+  <!-- JQVMap -->
+  <!-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script> -->
+  <!-- <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
+  <!-- jQuery Knob Chart -->
+  <!-- <script src="plugins/jquery-knob/jquery.knob.min.js"></script> -->
+  <!-- daterangepicker -->
+  <!-- <script src="plugins/moment/moment.min.js"></script> -->
+  <!-- <script src="plugins/daterangepicker/daterangepicker.js"></script> -->
+  <!-- Tempusdominus Bootstrap 4 -->
+  <!-- <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> -->
+  <!-- Summernote -->
+  <!-- <script src="plugins/summernote/summernote-bs4.min.js"></script> -->
+  <!-- overlayScrollbars -->
+  <!-- <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+  <!-- AdminLTE App -->
+  <!-- <script src="dist/js/adminlte.js"></script> -->
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="dist/js/demo.js"></script> -->
+</body>
+
+</html>

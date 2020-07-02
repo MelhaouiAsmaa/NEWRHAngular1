@@ -1,0 +1,44 @@
+
+<!-- <div [hidden]="submitted" style="width: 400px;"> -->
+    <div class="container mt-5  d-flex justify-content-center">
+        <div class="col-md-5">
+      <form [formGroup]="chargeEmployeeForm" (ngSubmit)="onSubmit()">
+    
+        <div class="card d-flex justify-content-center">
+          <div class="card-header">
+        <h3 style="text-align: center;">Modification du salaire</h3>
+        </div>
+        <div class="card-body">
+
+        <div class="form-group">
+          <label for="periode" class="control-label required">Période</label>
+          <select formControlName="periode" class="form-control">
+              <!-- <option [value]="Mensuel" [selected]="true">Mensuel</option> -->
+              <option  *ngFor="let pd of periode; let i = index" [value]="pd">
+                {{ pd }}
+              </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label required">Montant</label>
+       <input placeholder="montant" class="form-control" formControlName="montant" 
+       [ngClass]="{ 'is-invalid': submitted && f.montant.errors }">
+      <div *ngIf="submitted && f.montant.errors" class="invalid-feedback">
+        <div *ngIf="f.montant.errors.required">Veuillez saisir un montant</div>
+        <div *ngIf="f.montant.errors.pattern">Veuillez saisir un nombre</div>
+    </div>
+      </div>
+        </div>
+    
+      <div class="card-footer">
+          <div class="form-group">
+      <button type="submit" class="btn">Modifier</button>
+      <button type="submit" class="btn" id="reset" (click)="OnAnnuler()">Annuler</button>
+    </div>
+    </div>
+        </div>
+      </form>
+      </div>
+      </div>
+      

@@ -1,0 +1,18 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Modifier Type De contrat</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nom_Type de Contrat</label>
+      <input type="text" class="form-control" id="libelle_C" required [(ngModel)]="typecontrat.libelle_C"
+        name="libelle_C">
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Modification avec Succès</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

@@ -1,0 +1,17 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Créer Charge</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Type Charge</label>
+      <input type="text" class="form-control"  id="name" required [(ngModel)]="charge.typeCharge" name="typecharge">
+    </div>
+
+    
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Creation avec Succès</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

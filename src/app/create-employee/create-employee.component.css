@@ -1,0 +1,17 @@
+.tel_input {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .tel-full-width {
+    width: 100%;
+  }
+
+  .btn {
+    float: right; 
+    background-color: #3785C3;
+    color: white;
+}
+
+ 

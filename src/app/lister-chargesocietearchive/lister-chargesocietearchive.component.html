@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Liste des Charges Sociétés Archive</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Charge</th>
+            <th>Société</th>
+        
+            <th>Date_Début</th>
+            <th>Date_Fin</th>
+            <th>Montant</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of charges | async">
+            <td>{{c.pkchargesociete.charge.idCharge}}-{{c.pkchargesociete.charge.typeCharge}}</td>
+            <td>{{c.pkchargesociete.societe.idsociete}}-{{c.pkchargesociete.societe.raison_social}}</td>
+            <td>{{c.pkchargesociete.datedebut}}</td>
+            <td>{{c.date_fin}}</td>
+            <td>{{c.montant}}</td>
+
+            <td>
+                <button (click)="desarchiver(c.pkchargesociete)" class="btn btn-warning">Désarchivé</button>
+                <button (click)="modifier(c.pkchargesociete.charge.idCharge,c.pkchargesociete.societe.idsociete,c.pkchargesociete.datedebut)" class="btn btn-primary" style="margin-left: 10px">Modifier</button>
+                <!--<button (click)="ChargeDepartementUpdate(c.pk_chargedep.charge.id_Charge,c.pk_chargedep.departement.iddepartement,c.pk_chargedep.date_Debut)" class="btn btn-primary" style="margin-left: 10px">Modifier</button>
+                -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

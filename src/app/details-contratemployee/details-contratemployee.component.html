@@ -1,0 +1,32 @@
+<h2 style="text-align: center;">Département</h2>
+<hr />
+<div *ngIf="contrat1" style="margin-left: 100px;">
+  <div>
+    <label><b>Contrat: </b></label> {{contrat1.pkContrat.contrat.id_typeC}}- {{contrat1.pkContrat.contrat.libelle_C}}
+  </div>
+  <div>
+    <label><b>Employé: </b></label> {{contrat1.pkContrat.employee.matricule}}- {{contrat1.pkContrat.employee.nom}}
+    {{contrat1.pkContrat.employee.prenom}}
+  </div>
+
+  <div>
+    <label><b>Date Contrat : </b></label> {{contrat1.pkContrat.date_Contrat}}
+  </div>
+  <div>
+    <label><b>Date Début : </b></label> {{contrat1.date_Debut}}
+  </div>
+  <div>
+    <label><b>Date Fin : </b></label> {{contrat1.date_Fin}}
+  </div>
+  <div>
+    <label><b>Motif : </b></label> {{contrat1.motif}}
+  </div>
+  <div>
+    <label><b>Salaire initial : </b></label> {{contrat1.salaire_initial}} MAD
+  </div>
+
+</div>
+<br>
+<br>
+<button (click)="redirect()" style="margin-left:700px;" class="btn btn-primary">Retourner à la liste des
+  Contrats</button><br>

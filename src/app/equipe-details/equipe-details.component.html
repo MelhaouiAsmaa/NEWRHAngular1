@@ -1,0 +1,58 @@
+<div *ngIf="myArray?.length > 0;else empty_arr">
+    <h2>Liste des employés</h2>
+    
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Fonction</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Responsable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let employee of employees | async"> -->
+                
+                <tr *ngFor="let employee of myArray">            
+                <td>{{employee.nom}}</td>
+                <td>{{employee.prenom}}</td>
+                <td>{{employee.libelleFct}}</td>
+                <ng-container *ngIf="employee.datedeb == 'null'; else elseTemplate1">
+                  <td>-</td>
+                </ng-container>
+
+                <ng-template #elseTemplate1>
+                  <td>{{employee.datedeb}}</td>
+                </ng-template>
+
+                <ng-container *ngIf="employee.datefin == '2999-12-31'; else elseTemplate2">
+                  <td>date non défini</td>
+                </ng-container>
+
+                <ng-template #elseTemplate2>
+                  <td>{{employee.datefin}}</td>
+                </ng-template>
+
+                <ng-container *ngIf="employee.respo === 'false'; else elseTemplate">
+                  <td>Non</td>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <td>Oui</td>
+                </ng-template>                              
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <ng-template #empty_arr>
+      Aucun employé dans cette équipe
+    </ng-template>
+     

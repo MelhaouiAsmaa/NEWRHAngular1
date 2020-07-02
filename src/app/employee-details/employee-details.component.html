@@ -1,0 +1,115 @@
+<h2>Employés</h2>
+<!-- <h6>
+  <ul>
+    <li style="float: right;">CIN: {{employee.cin}}</li>
+    <li style="float: right;">Date naissance: {{employee.datenaissance}}</li>
+    <li style="float: right;">Adresse: {{employee.adresse}}</li>
+    <li style="float: right;">Tel: {{employee.telephone}}</li>
+  </ul>
+</h6> -->
+
+<!-- <div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Fonction</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Actions</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empfct of employeesfunctions">
+            <td hidden>{{empfct.employeef.matricule}}</td>
+            <td>{{empfct.fonction.libelleFct}}</td>
+            <td>{{empfct.pkFonctionemp.dateDebutR}}</td>
+            <td>{{empfct.dateFinR}}</td>
+            <td>
+              <button title="Modifier" mat-button 
+      (click)="updateEmpFonc(empfct.employeef.matricule,empfct.fonction.idFct,empfct.pkFonctionemp.dateDebutR)">
+              <span class="material-icons">edit</span></button>
+               
+              <button title="Supprimer" mat-button 
+              (click)="openDialog(empfct.employeef.matricule,empfct.fonction.idFct,empfct.pkFonctionemp.dateDebutR)">
+              <span class="material-icons">delete</span></button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+<ul>
+  <li>CIN: {{employee.cin}}</li>
+  <li>Age: {{employee.age}}</li>
+  <li>Adresse: {{employee.adresse}}</li>
+  <li>Telephone: {{employee.telephone}}</li>
+</ul>
+<div class="container">
+  <div class=" list-group mt-5 ml-5">
+    <div class=" list-group-item" *ngFor="let empfct of employeesfunctions">
+      <div class="row">
+        <div class="col-10">
+          <h5 class="text-primary">{{empfct.fonction.libelleFct}}</h5>
+        </div>
+        <div class="col-1">
+          <button title="Modifier" mat-button
+            (click)="updateEmpFonc(empfct.employeef.matricule,empfct.fonction.idFct,empfct.pkFonctionemp.dateDebutR)">
+            <span class="material-icons">edit</span></button>
+        </div>
+        <div class="col-1">
+          <button title="Supprimer" mat-button
+            (click)="openDialog(empfct.employeef.matricule,empfct.fonction.idFct,empfct.pkFonctionemp.dateDebutR)">
+            <span class="material-icons">delete</span></button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ng-container *ngIf="empfct.dateFinR == '2999-12-31'; else datefinfct">
+            <span class="small-text text-secondary">{{empfct.pkFonctionemp.dateDebutR}} ----> date non définie </span>
+          </ng-container>
+          <ng-template #datefinfct>
+            <span class="small-text text-secondary">{{empfct.pkFonctionemp.dateDebutR}} ----> {{empfct.dateFinR}}</span>
+          </ng-template>
+
+
+        </div>
+      </div>
+      <div class="container">
+        <div class="list-group">
+          <div class="list-group-item" *ngFor="let item of empfct.listeequipe">
+            <div class="row">
+              <div class="col-10">
+                {{item.nomEquipe}}
+              </div>
+              <div class="col-1">
+                <button title="Modifier" mat-button
+                  (click)="updateEmpEq(empfct.employeef.matricule,item.idEquipe,item.datedebutA)">
+                  <span class="material-icons">edit</span></button>
+              </div>
+              <div class="col-1">
+                <button title="Supprimer" mat-button
+                  (click)="openDialog1(empfct.employeef.matricule,item.idEquipe,item.datedebutA)">
+                  <span class="material-icons">delete</span></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <ng-container *ngIf="item.datefinA == '2999-12-31'; else datefineq">
+                  <span class="small-text text-secondary">{{item.datedebutA}} ----> date non définie </span>
+                </ng-container>
+                <ng-template #datefineq>
+                  <span class="small-text text-secondary">{{item.datedebutA}} ----> {{item.datefinA}}</span>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

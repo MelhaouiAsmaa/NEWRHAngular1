@@ -1,0 +1,38 @@
+<h2>Fonctions</h2>
+<!-- <button mat-raised-button class="btn" style="float: right;">
+    <a [routerLink]="['/fonction/add']" routerLinkActive="active"> + Nouvelle fonction</a>
+</button> -->
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fonction</th>
+          <th>Nombre employés actuels</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fct of fonctions;let i=index">
+          <td>{{fct.libelleFct}}</td>
+          <td>{{ fct.emp }}</td>
+          <td>
+
+            <button mat-button (click)="updateFonction(fct.idFct)">
+              <span class="material-icons">edit</span></button>
+
+            <button mat-button (click)="detailsFonction(fct.idFct)">
+              <span class="material-icons">more_horiz</span></button>
+
+            <button mat-button (click)="openDialog(fct.idFct)">
+              <span class="material-icons">delete</span></button>
+
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

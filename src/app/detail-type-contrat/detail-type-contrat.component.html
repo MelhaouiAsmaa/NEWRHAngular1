@@ -1,0 +1,34 @@
+<h2 style="text-align: center;">Type Contrat</h2>
+<hr />
+<div *ngIf="typecontrat" style="margin-left: 100px;">
+  <div>
+    <label><b>Id_Type Contrat: </b></label> {{typecontrat.id_typeC}}
+  </div>
+  <div>
+    <label><b>Libellé Contrat: </b></label> {{typecontrat.libelle_C}}
+  </div>
+
+  <div>
+    <label><b>Informations sur Employés et Contrat {{typecontrat.libelle_C}}: </b></label>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Employé</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of contrat1 | async">
+          <td>{{c.pkContrat.employee.matricule}}- {{c.pkContrat.employee.nom}} {{c.pkContrat.employee.prenom}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<br>
+<br>
+<button (click)="redirect()" style="margin-left:700px;" class="btn btn-primary">Retourner à la liste</button><br>

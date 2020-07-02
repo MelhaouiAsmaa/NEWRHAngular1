@@ -1,0 +1,23 @@
+body {
+  /* background: linear-gradient(175deg, rgba(197,197,217,1) 0%, rgba(176,219,232) 100%); */
+  background-image: url('https://www.hr-path.com/wp-content/uploads/2020/04/hr-path-australia-logo.jpg');
+
+}
+
+.oval {
+  width: 160px;
+  height: 80px;
+  background: #a84909;
+  border-radius: 50%;
+}
+
+/* .card-container {
+  background-color: rgba(white, white, white, 0.3);
+  width: 50%;
+  margin-top: 20%;
+} */
+
+.card {
+  margin-top: 30%;
+  background-color: rgba(255, 255, 255, 0.9);
+}

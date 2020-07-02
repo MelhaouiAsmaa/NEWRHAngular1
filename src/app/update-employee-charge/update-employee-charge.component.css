@@ -1,0 +1,10 @@
+.btn {
+    float: right; 
+    background-color: #3785C3;
+    color: white;
+}
+#reset {
+    float: left;
+    background-color: wheat;
+    color: black;
+}

@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste des Charges de Département</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Charge</th>
+          <th>Département</th>
+
+          <th>Date_Début</th>
+          <th>Date_Fin</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of chargedepartement">
+          <td>{{c.pk_chargedep.charge.idCharge}}-{{c.pk_chargedep.charge.typeCharge}}</td>
+          <td>{{c.pk_chargedep.departement.idDepartement}}-{{c.pk_chargedep.departement.nomDepartement}}</td>
+          <td>{{c.pk_chargedep.date_Debut}}</td>
+          <td>{{c.date_Fin}}</td>
+          <td>{{c.montant}}</td>
+          <td>
+            <button (click)="desarchiver(c.pk_chargedep)" class="btn btn-warning">Désarchivé</button>
+            <button
+              (click)="ChargeDepartementUpdate(c.pk_chargedep.charge.idCharge,c.pk_chargedep.departement.idDepartement,c.pk_chargedep.date_Debut)"
+              class="btn btn-primary" style="margin-left: 10px">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

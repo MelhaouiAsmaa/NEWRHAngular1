@@ -1,0 +1,139 @@
+<ng-container *ngIf="userinterface || !isLoggedIn; else admintemp">
+
+  <div class="container">
+    <header class="jumbotron">
+      <p>Acces refuse</p>
+    </header>
+  </div>
+
+</ng-container>
+
+
+<ng-template #admintemp>
+
+  <!-- <div [hidden]="submitted" style="width: 400px;"> -->
+  <div class="container mt-5  d-flex justify-content-center">
+    <div class="col-md-5">
+      <form [formGroup]="equipeEmployeeForm" (ngSubmit)="onSubmit()" *ngIf="mod">
+
+        <div class="card d-flex justify-content-center">
+          <div class="card-header">
+            <h4>Affecter l'équipe</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="equip" class="control-label required"></label>
+              <select formControlName="equipes" class="form-control">
+                <option disabled [ngValue]="null" [selected]="true">--choissisez une équipe--</option>
+                <option *ngFor="let equ of equipe; let i = index" [value]="equ.idEquipe">
+                  {{ equ.nomEquipe }} --> {{equ.departement.nomDepartement}}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Date de début</mat-label>
+                <input matInput [matDatepicker]='datedebA' formControlName="dateDebutA">
+                <mat-datepicker-toggle [for]='datedebA' matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datedebA></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Date de fin</mat-label>
+                <input matInput [matDatepicker]='dateFA' formControlName="dateFinA"
+                  [ngClass]="{ 'is-invalid': submitted && f.dateFinA.errors }">
+                <mat-datepicker-toggle [for]='dateFA' matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #dateFA></mat-datepicker>
+              </mat-form-field>
+              <!-- <div *ngIf="submitted && f.dateFinA.errors" class="invalid-feedback">
+          <div *ngIf="f.dateFinA.errors.required">champ obligatoire</div>
+      </div> -->
+            </div>
+
+            <div class="form-group">
+              <mat-label>Responsable ?</mat-label>
+              <br>
+              <mat-radio-group formControlName="responsable"
+                [ngClass]="{ 'is-invalid': submitted && f.responsable.errors }">
+                <mat-radio-button value="1">Oui</mat-radio-button>
+                <mat-radio-button value="0">Non</mat-radio-button>
+              </mat-radio-group>
+              <div *ngIf="submitted && f.responsable.errors" class="invalid-feedback">
+                <div *ngIf="f.responsable.errors.required">Veuillez choisir Oui ou Non</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="form-group">
+              <button type="submit" class="btn">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form [formGroup]="equipeEmployeeForm" (ngSubmit)="onSubmit()" *ngIf="!mod">
+
+        <div class="card d-flex justify-content-center">
+          <div class="card-header">
+            <h4>Affecter l'équipe</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="equip" class="control-label required"></label>
+              <select formControlName="equipes" class="form-control">
+                <option disabled [ngValue]="null" [selected]="true">--choissisez une équipe--</option>
+                <option *ngFor="let equ of equipe; let i = index" [value]="equ.idEquipe">
+                  {{ equ.nomEquipe }} --> {{equ.departement.nomDepartement}}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Date de début</mat-label>
+                <input matInput [matDatepicker]='datedebA' formControlName="dateDebutA">
+                <mat-datepicker-toggle [for]='datedebA' matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datedebA></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Date de fin</mat-label>
+                <input matInput [matDatepicker]='dateFA' formControlName="dateFinA"
+                  [ngClass]="{ 'is-invalid': submitted && f.dateFinA.errors }">
+                <mat-datepicker-toggle [for]='dateFA' matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #dateFA></mat-datepicker>
+              </mat-form-field>
+              <!-- <div *ngIf="submitted && f.dateFinA.errors" class="invalid-feedback">
+          <div *ngIf="f.dateFinA.errors.required">champ obligatoire</div>
+      </div> -->
+            </div>
+
+            <div class="form-group">
+              <mat-label>Responsable ?</mat-label>
+              <br>
+              <mat-radio-group formControlName="responsable"
+                [ngClass]="{ 'is-invalid': submitted && f.responsable.errors }">
+                <mat-radio-button value="1">Oui</mat-radio-button>
+                <mat-radio-button value="0">Non</mat-radio-button>
+              </mat-radio-group>
+              <div *ngIf="submitted && f.responsable.errors" class="invalid-feedback">
+                <div *ngIf="f.responsable.errors.required">Veuillez choisir Oui ou Non</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="form-group">
+              <button type="submit" class="btn">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

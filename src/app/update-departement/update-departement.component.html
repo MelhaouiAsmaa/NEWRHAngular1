@@ -1,0 +1,18 @@
+<h3>Modifier un département</h3>
+<div [hidden]="submitted" style="width: 400px;">
+
+  <form [formGroup]="depForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="DepName">Nom du département </label>
+      <input type="text" class="form-control" formControlName="nomDepartement">
+    </div>
+
+    <button type="submit" class="btn btn-success">Modifier</button>
+  </form>
+</div>
+
+
+<!-- <div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4> -->
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+<!-- </div> -->

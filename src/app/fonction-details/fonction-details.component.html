@@ -1,0 +1,41 @@
+<div *ngIf="employees?.length > 0;else empty_arr">
+<h2>Liste des employés</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date naissance</th>
+            <th>CIN</th>
+            <th>Adresse</th>
+            <th>Telephone</th>
+            <th>Annee d'expérience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let employee of employees | async"> -->
+            
+            <tr *ngFor="let employee of employees">            
+            <td>{{employee.nom}}</td>
+            <td>{{employee.prenom}}</td>
+            <td>{{employee.datenaissance}}</td>
+            <td>{{employee.cin}}</td>
+            <td>{{employee.adresse}}</td>
+            <td>{{employee.telephone}}</td>
+            <td>{{employee.annee_experience}} ans</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #empty_arr>
+  Aucun employé
+</ng-template>
+ 

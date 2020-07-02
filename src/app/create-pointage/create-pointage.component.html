@@ -1,0 +1,34 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Créer Pointage Employé</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="validationCustom02">Employé:</label>
+      <select class="form-control form-control-lg" id="validationCustom02" required
+        [(ngModel)]="pointage.employee.matricule" name="pkContrat.employee.matricule">
+        <option value="">Employé...</option>
+        <option *ngFor="let emp of employees" value={{emp.matricule}}>{{emp.matricule}}-{{emp.nom}}
+          {{emp.prenom}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="validationCustom03">Mois</label>
+      <input type="text" class="form-control" id="validationCustom03" required [(ngModel)]="pointage.mois"
+        name="salaire_initial">
+    </div>
+    <div class="form-group">
+      <label for="validationCustom04">Année</label>
+      <input type="text" class="form-control" id="validationCustom04" required [(ngModel)]="pointage.annee"
+        name="salaire_initial">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+
+  <button (click)="gotoList()" class="btn btn-info">Retour</button>
+
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

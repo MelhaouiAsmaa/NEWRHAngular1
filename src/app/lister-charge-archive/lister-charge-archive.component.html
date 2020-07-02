@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Liste les Charges</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id_Charge</th>
+            <th>Type Charges</th>
+        
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let charge of charges | async">
+            <td>{{charge.idCharge}}</td>
+            <td>{{charge.typeCharge}}</td>
+      
+            <td>
+                <button (click)="desarchiveCharge(charge.idCharge)" class="btn btn-warning">Desarchiver</button>
+
+                <button (click)="updatecharge(charge.idCharge)" class="btn btn-primary" style="margin-left: 10px">Modofier</button>
+                
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

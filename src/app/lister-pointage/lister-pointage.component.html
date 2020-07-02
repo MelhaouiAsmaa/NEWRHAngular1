@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Lister Pointage Courant </h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id_Pointage</th>
+          <th>Employé</th>
+          <th>Mois</th>
+
+          <th>Année</th>
+
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of pointage;let i=index">
+          <td>{{p.id_pointage}}</td>
+          <td *ngIf="p.employee" ; else #else>{{p.employee.nom}} {{p.employee.prenom}}</td>
+          <td #else>-</td>
+          <td>{{p.mois}}</td>
+          <td>{{p.annee}}</td>
+          <td>
+            <button (click)="deletePointage(p.id_pointage)" class="btn btn-danger">Supprimer</button>
+            <button (click)="PointageUpdate(p.id_pointage)" class="btn btn-primary"
+              style="margin-left: 10px">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

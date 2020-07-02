@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste les Charges</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id </th>
+          <th>Type </th>
+
+          <!-- <th>Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let charge of charges">
+          <td>{{charge.idCharge}}</td>
+          <td>{{charge.typeCharge}}</td>
+
+          <td>
+             <button (click)="deleteCharge(charge.idCharge)" class="btn btn-danger">Supprimer</button>
+              
+                <button (click)="updatecharge(charge.idCharge)" class="btn btn-primary" style="margin-left: 10px">Modofier</button>
+                
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

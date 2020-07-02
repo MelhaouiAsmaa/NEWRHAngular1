@@ -1,0 +1,30 @@
+/* .panel {
+
+    margin-top: 10%;
+    
+} */
+
+a { 
+    color: inherit;
+    text-decoration: none;
+ } 
+
+th,td {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h2 {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular',
+    'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-decoration: underline;
+    
+}
+.btn {
+    background-color: #3785C3;
+    color: white;
+    margin-bottom: 15px;
+
+}
+
+

@@ -1,0 +1,45 @@
+<!-- <div [hidden]="submitted" style="width: 400px;"> -->
+
+<div class="container mt-5  d-flex justify-content-center">
+  <div class="col-md-5">
+
+    <form [formGroup]="equipeForm" (ngSubmit)="onSubmit()">
+      <div class="card d-flex justify-content-center">
+        <div class="card-header">
+          <h4>Modifier une équipe</h4>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="nomeq" class="control-label required">Nom de l'équipe </label>
+            <input type="text" class="form-control" formControlName="nomEquipe"
+              [ngClass]="{ 'is-invalid': submitted && f.nomEquipe.errors }">
+
+            <div *ngIf="submitted && f.nomEquipe.errors" class="invalid-feedback">
+              <div *ngIf="f.nomEquipe.errors.required">champ obligatoire</div>
+              <div *ngIf="f.nomEquipe.errors.pattern">caractères en majuscule</div>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="!mod">
+            <label for="depnom">Département </label>
+            <select formControlName="departement" class="form-control" [(ngModel)]="depart" [compareWith]="compareFn">
+              <option disabled [ngValue]="null" [selected]="true">--choissisez un département--</option>
+              <option *ngFor="let dep of deps; let i = index" [ngValue]="dep">
+                {{dep.nomDepartement}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="form-group">
+            <button type="submit" class="btn">Modifier</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+</div> -->

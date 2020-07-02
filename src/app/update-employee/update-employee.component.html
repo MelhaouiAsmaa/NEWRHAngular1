@@ -1,0 +1,85 @@
+<ng-container *ngIf="userinterface || !isLoggedIn; else admintemp">
+
+  <div class="container">
+    <header class="jumbotron">
+      <p>Acces refuse</p>
+    </header>
+  </div>
+
+</ng-container>
+
+
+<ng-template #admintemp>
+  <!-- <div [hidden]="submitted" style="width: 400px;"> -->
+
+  <div class="container mt-5  d-flex justify-content-center">
+    <div class="col-md-5">
+
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="card d-flex justify-content-center">
+          <div class="card-header">
+            <h4>Modifier employé</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="name"> Nom</label>
+              <input type="text" class="form-control" formControlName="nom">
+            </div>
+
+            <div class="form-group">
+              <label for="name"> Prénom</label>
+              <input type="text" class="form-control" formControlName="prenom">
+            </div>
+
+            <div class="form-group">
+              <mat-form-field>
+                <mat-label>Date de naissance</mat-label>
+                <input matInput [matDatepicker]='employeeDOB' formControlName="datenaissance">
+                <mat-datepicker-toggle [for]='employeeDOB' matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #employeeDOB></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <label for="name">CIN</label>
+              <input type="text" class="form-control" id="cin" name="cin" formControlName="cin">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Adresse</label>
+              <input type="text" class="form-control" id="adresse" name="adresse" formControlName="adresse">
+            </div>
+
+
+            <div class="tel_input">
+              <mat-form-field class="tel-full-width">
+                <mat-label>Telephone</mat-label>
+                <span matPrefix>+212 &nbsp;</span>
+                <input type="tel" matInput placeholder="555-555-1234" formControlName="telephone">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-label>Année d'expérience</mat-label>
+              <select class="form-control" formControlName="annee_experience">
+                <option *ngFor="let numb of counter(51) ;let i = index" [value]="i">
+                  {{i}}
+                </option>
+              </select>
+            </div>
+
+          </div>
+          <br>
+
+          <div class="card-footer">
+            <div class="form-group">
+              <button type="submit" class="btn">Modifier</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>

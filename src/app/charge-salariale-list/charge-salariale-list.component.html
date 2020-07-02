@@ -1,0 +1,35 @@
+<h2>Charge salariale</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Type de période</th>
+            <th>Montant</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ch of charge; let i = index">
+            <td>{{ch.pkChargeemp.dateDebutC}}</td>
+            <td>{{ch.dateFinC}}</td>
+            <td>{{ch.periode}}</td>
+            <td>{{ch.montant}} (DM)</td>  
+            <td hidden>{{idemp}}</td>
+            <td>
+              <button title="Modifer" mat-button (click)="onModifier(idemp, ch.pkChargeemp.dateDebutC)">
+                <span class="material-icons">edit</span></button>
+
+              <button title="Supprimer" mat-button (click)="onSupprimer(idemp, ch.pkChargeemp.dateDebutC)">
+                <span class="material-icons">delete</span></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

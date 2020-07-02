@@ -1,0 +1,5 @@
+body {
+  /* background: linear-gradient(175deg, rgba(197,197,217,1) 0%, rgba(176,219,232) 100%); */
+  background-image: url('https://www.hr-path.com/wp-content/uploads/2020/04/hr-path-australia-logo.jpg');
+  z-index: 10000;
+}

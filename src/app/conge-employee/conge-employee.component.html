@@ -1,0 +1,77 @@
+<h2>Congé</h2>
+
+<ul *ngIf="employee;">
+  <li> Solde de Congé : {{employee.soldeConge}} - {{employee.totalconge}} =
+    {{employee.soldeConge - employee.totalconge}} </li>
+</ul>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <a href="jourferie"> Consulter le calendrier des jours fériés</a>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th>Employé</th> -->
+          <th>Date de départ</th>
+          <th>Date de retour</th>
+          <th>Nombre de jours</th>
+          <th>cause</th>
+          <th>type</th>
+          <!-- <th>certificat</th> -->
+          <th>Date de demande</th>
+          <th>Etat</th>
+          <!-- <th>Valider</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cg of conges; let i = index">
+          <!-- <td></td> -->
+          <!-- <ng-container *ngIf="cg.employee; else elseTemplate">
+                <td>{{cg.employee.nom}} <br>
+                    {{cg.employee.prenom}}</td>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <td>-</td>
+            </ng-template> -->
+
+
+          <td>{{cg.dateDepart}}</td>
+          <td> {{cg.dateRetours}} </td>
+          <td>{{cg.nbJours}}</td>
+          <td>{{cg.cause}}</td>
+          <td>{{cg.type}}</td>
+          <!-- <td>
+            <img  class="images" src="C:\fakepath\573cd16ae8269a08f784044abffd8780.jpg"/>
+            </td> -->
+          <td>{{cg.dateDemande}}</td>
+          <ng-container *ngIf="cg.etat === 'En attente'; else V">
+            <td style="color: orange; font-weight: bold;">{{cg.etat}}</td>
+          </ng-container>
+          <ng-template #V>
+            <ng-container *ngIf="cg.etat === 'Validé'; else NV">
+              <td style="color: green; font-weight: bold;">{{cg.etat}}</td>
+            </ng-container>
+            <ng-template #NV>
+              <td style="color: red; font-weight: bold;">{{cg.etat}}</td>
+            </ng-template>
+
+          </ng-template>
+          <!-- <td>
+                <button title="Valider" mat-button (click)="onValidate(cg)">
+                <span class="material-icons">
+                done_outline
+                </span>
+                </button>
+                <button title="Refuser" mat-button (click)="onRefuse(cg)">
+                <span class="material-icons">
+                    clear
+                </span>
+                </button>
+            </td> -->
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

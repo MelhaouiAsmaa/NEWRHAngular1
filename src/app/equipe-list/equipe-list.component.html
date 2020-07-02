@@ -1,0 +1,43 @@
+<h2>Equipes</h2>
+<!-- <button mat-raised-button class="btn" style="float: right;">
+    <a [routerLink]="['/equipe/add']" routerLinkActive="active"> + Nouvelle équipe</a>
+</button> -->
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped ">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Département</th>
+          <th>Responsable</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eq of equipes">
+          <td>{{eq.nomEquipe}}</td>
+          <td>{{eq.departement}}</td>
+          <ng-container *ngIf="!eq.responsable; else responsableNotnull">
+            <td>-</td>
+          </ng-container>
+          <ng-template #responsableNotnull>
+            <td> {{eq.responsable}} </td>
+          </ng-template>
+          <td>
+            <button mat-button (click)="updateEquipe(eq.idEquipe)">
+              <span class="material-icons">edit</span></button>
+
+            <button mat-button (click)="detailsEquipe(eq.idEquipe)">
+              <span class="material-icons">more_horiz</span></button>
+
+            <button mat-button (click)="openDialog(eq.idEquipe)">
+              <span class="material-icons">delete</span></button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

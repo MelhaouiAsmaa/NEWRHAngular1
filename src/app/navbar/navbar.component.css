@@ -1,0 +1,21 @@
+
+/* .navbar {
+    background-color: #3785C3;
+} */
+
+.navbar-brand {
+    width: 12%;
+    color: whitesmoke;
+}
+
+
+nav a  {
+    padding-bottom: 0;
+    color: whitesmoke;
+    border-bottom: 2px solid whitesmoke; 
+}
+
+.nav-item {
+    padding: 0 3rem;
+}
+

@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste des Départements</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id Département</th>
+          <th>Nom Département</th>
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departement of deps">
+          <td>{{departement.idDepartement}}</td>
+          <td>{{departement.nomDepartement}}</td>
+
+          <td>
+            <button (click)="deleteDepartement(departement.idDepartement)" class="btn btn-danger">Supprimer</button>
+            <button (click)="departementDetails(departement.idDepartement)" class="btn btn-info"
+              style="margin-left: 10px">Details</button>
+            <button (click)="departementUpdate(departement.idDepartement)" class="btn btn-primary"
+              style="margin-left: 10px">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+/* 
+
+.sidebar
+{
+    width: 15%;
+    margin-top: 3.5rem;
+    position: fixed;
+    background: linear-gradient(to right bottom, #343A40 0%, #343A40 80%, whitesmoke  );
+
+    height: 100vh;
+
+}
+
+
+.list-group-item {
+    color: whitesmoke;
+    background: linear-gradient(to right bottom,whitesmoke , #343A40 10%, #343A40 90%, whitesmoke );
+
+}
+
+.list-group-item:hover{
+    color: gold;
+    cursor: pointer;
+    
+}
+
+
+a:link
+{
+    border: none;
+} */

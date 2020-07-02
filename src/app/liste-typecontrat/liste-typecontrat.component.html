@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Liste des Types Contrat</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id_TypeContrat</th>
+          <th>Libellé</th>
+
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let typecontrat of typecontrats | async">
+          <td>{{typecontrat.id_typeC}}</td>
+          <td>{{typecontrat.libelle_C}}</td>
+
+          <td>
+            <button (click)="deleteTypeContrat(typecontrat.id_typeC)" class="btn btn-danger">Supprimer</button>
+            <button (click)="detailsTypeContrat(typecontrat.id_typeC)" class="btn btn-info"
+              style="margin-left: 10px">Detailles</button>
+            <button (click)="TypeContratUpdate(typecontrat.id_typeC)" class="btn btn-primary"
+              style="margin-left: 10px">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
