@@ -9,6 +9,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { EmployeeCharge } from '../employee-charge';
 import { error } from 'protractor';
+import { ContratService } from '../contrat.service';
+import { ContratId } from '../contrat-id';
+import { Contrat } from '../contrat';
 
 @Component({
   selector: 'app-employee-charge',
@@ -16,7 +19,7 @@ import { error } from 'protractor';
   styleUrls: ['./employee-charge.component.css']
 })
 export class EmployeeChargeComponent implements OnInit {
-
+  salaire: number;
   periode: any[] = ['Mensuel', 'Annuel', 'Trimestriel', 'Hebdomadaire', 'Quotidien'];
   idemp;
   chargeEmployeeForm;
@@ -25,7 +28,9 @@ export class EmployeeChargeComponent implements OnInit {
   empchargeId: EmployeeChargeId = new EmployeeChargeId();
   empcharge: EmployeeCharge = new EmployeeCharge();
   prd;
+  contrat: any;
   constructor(private router: Router,
+    private contratService: ContratService,
     private formbuilder: FormBuilder,
     private employeechargeservice: EmployeeChargeService,
     private employeeservice: EmployeeService,
@@ -41,9 +46,23 @@ export class EmployeeChargeComponent implements OnInit {
     this.chargeEmployeeForm = this.formbuilder.group({
       dateDebutC: null,
       periode: [this.periode[0]],
-      montant: [null, [Validators.required, Validators.pattern('^([0-9]*[.])?[0-9]+$')]]
+      montant: null
     });
-
+    this.employeeservice.getActualContrat(this.idemp).subscribe(
+      data => {
+        if (!data) {
+          console.log(data);
+          this.empcharge.montant = 2000;
+        } else {
+          console.log(data);
+          this.contrat = data;
+          // console.log(this.contrat.salaire_initial);
+          this.salaire = this.contrat.salaire_initial;
+          this.empcharge.montant = this.salaire;
+          console.log(this.empcharge.montant);
+        }
+        this.chargeEmployeeForm.get('montant').setValue(this.empcharge.montant);
+      });
   }
 
   get f() { return this.chargeEmployeeForm.controls; }
@@ -58,6 +77,9 @@ export class EmployeeChargeComponent implements OnInit {
     this.myDebDate = this.chargeEmployeeForm.get('dateDebutC').value;
     if (this.myDebDate == null) {
       this.myDebDate = new Date();
+    } else {
+      let tempdate = new Date(this.myDebDate);
+      this.myDebDate = new Date(tempdate.getFullYear(), tempdate.getMonth(), tempdate.getDate() + 1);
     }
     console.log('value:', this.myDebDate);
     this.prd = this.chargeEmployeeForm.get('periode').value;

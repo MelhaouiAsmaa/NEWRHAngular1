@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let contrat of contrats | async">
-          <td>{{contrat.pkContrat.contrat.id_typeC}}{{contrat.pkContrat.contrat.libelle_C}}</td>
+          <td>{{contrat.pkContrat.contrat.id_typeC}}-{{contrat.pkContrat.contrat.libelle_C}}</td>
           <td>{{contrat.pkContrat.employee.matricule }}-{{contrat.pkContrat.employee.nom}}
             {{contrat.pkContrat.employee.prenom}}</td>
           <td>{{contrat.pkContrat.date_Contrat}}</td>
@@ -25,7 +25,7 @@
             <button (click)="deleteContrat(contrat.pkContrat)" class="btn btn-danger">Supprimer</button>
             <button
               (click)="DetailTypeContrat(contrat.pkContrat.contrat.id_typeC,contrat.pkContrat.employee.matricule,contrat.pkContrat.date_Contrat)"
-              class="btn btn-info" style="margin-left: 10px">Detailles</button>
+              class="btn btn-info" style="margin-left: 10px">Détails</button>
             <button
               (click)="ContratUpdate(contrat.pkContrat.contrat.id_typeC,contrat.pkContrat.employee.matricule,contrat.pkContrat.date_Contrat)"
               class="btn btn-primary" style="margin-left: 10px">Modifier</button>

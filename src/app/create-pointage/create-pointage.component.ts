@@ -39,7 +39,7 @@ export class CreatePointageComponent implements OnInit {
 
   }
   gotoList() {
-    this.router.navigate(['/listerContrat']);
+    this.router.navigate(['/listerpointage']);
   }
 
 }

@@ -6,7 +6,7 @@
       <select class="form-control form-control-lg" id="validationCustom02" required
         [(ngModel)]="pointage.employee.matricule" name="pkContrat.employee.matricule">
         <option value="">Employé...</option>
-        <option *ngFor="let emp of employees" value={{emp.matricule}}>{{emp.matricule}}-{{emp.nom}}
+        <option *ngFor="let emp of employees | async" value={{emp.matricule}}>{{emp.matricule}}-{{emp.nom}}
           {{emp.prenom}}</option>
       </select>
     </div>

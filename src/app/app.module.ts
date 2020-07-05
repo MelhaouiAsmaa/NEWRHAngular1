@@ -89,6 +89,8 @@ import { CreateChargesocieteComponent } from './create-chargesociete/create-char
 import { ListerChargesocieteComponent } from './lister-chargesociete/lister-chargesociete.component';
 import { ListerChargesocietearchiveComponent } from './lister-chargesocietearchive/lister-chargesocietearchive.component';
 import { UpdateChargesocieteComponent } from './update-chargesociete/update-chargesociete.component';
+import { CreateChargeSalarialeComponent } from './create-charge-salariale/create-charge-salariale.component';
+import { ListeChargeSalarialeComponent } from './liste-charge-salariale/liste-charge-salariale.component';
 
 
 @NgModule({
@@ -168,7 +170,9 @@ import { UpdateChargesocieteComponent } from './update-chargesociete/update-char
     CreateChargesocieteComponent,
     ListerChargesocieteComponent,
     ListerChargesocietearchiveComponent,
-    UpdateChargesocieteComponent
+    UpdateChargesocieteComponent,
+    CreateChargeSalarialeComponent,
+    ListeChargeSalarialeComponent
    
   ],
   imports: [

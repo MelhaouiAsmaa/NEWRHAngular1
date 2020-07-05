@@ -1,3 +1,5 @@
+import { ListeChargeSalarialeComponent } from './liste-charge-salariale/liste-charge-salariale.component';
+import { CreateChargeSalarialeComponent } from './create-charge-salariale/create-charge-salariale.component';
 import { ListeChargeComponent } from './liste-charge/liste-charge.component';
 import { UpdatePointageComponent } from './update-pointage/update-pointage.component';
 import { ListerPointageArchiveComponent } from './lister-pointage-archive/lister-pointage-archive.component';
@@ -97,7 +99,7 @@ const routes: Routes = [
   { path: 'conge', component: CongeListComponent },
   { path: 'employees/conge/:id', component: CongeEmployeeComponent },
   { path: 'employees/add/salary/:id', component: EmployeeChargeComponent },
-  { path: 'updateEmployee/charge/:idemp/:datedeb', component: UpdateEmployeeChargeComponent },
+  { path: 'updateEmployee/charge/:idemp/:datedeb/:idcharge', component: UpdateEmployeeChargeComponent },
   { path: 'chargesalariale/:id', component: ChargeSalarialeListComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -133,19 +135,21 @@ const routes: Routes = [
   { path: 'listerChargeDepartementcourant', component: ListerChargedepartementComponent },
   { path: 'listerchargedepartementarchive', component: ListerChargedepartementarchiveComponent },
   { path: 'updatechargedepartement', component: UpdateChargedepartementComponent },
-  {path:'createCharge',component:CreateChargeComponent},
-{path:'listerChargeNonArchive',component:ListeChargeComponent},
-{path:'listerChargeArchive',component:ListerChargeArchiveComponent},
-{path:'updatecharge/:id',component:UpdateChargeComponent},
-{path:'reporting',component:ReportingComponent},
-{path:'createsociete',component:CreateSocieteComponent},
-{path:'listersociete',component:ListerSocieteComponent},
-{path:'listersocietearchive',component:ListerSocieteArchiveComponent},
-{path:'modifiersociete/:id',component:UpdateSocieteComponent},
-{path:'createchargesociete',component:CreateChargesocieteComponent},
-{path:'listerchargesociete',component:ListerChargesocieteComponent},
-{path:'listerchargesocietearchive',component:ListerChargesocietearchiveComponent},
-{path:'modifierchargesociete',component:UpdateChargesocieteComponent}
+  { path: 'createCharge', component: CreateChargeComponent },
+  { path: 'listerChargeNonArchive', component: ListeChargeComponent },
+  { path: 'listerChargeArchive', component: ListerChargeArchiveComponent },
+  { path: 'updatecharge/:id', component: UpdateChargeComponent },
+  { path: 'reporting', component: ReportingComponent },
+  { path: 'createsociete', component: CreateSocieteComponent },
+  { path: 'listersociete', component: ListerSocieteComponent },
+  { path: 'listersocietearchive', component: ListerSocieteArchiveComponent },
+  { path: 'modifiersociete/:id', component: UpdateSocieteComponent },
+  { path: 'createchargesociete', component: CreateChargesocieteComponent },
+  { path: 'listerchargesociete', component: ListerChargesocieteComponent },
+  { path: 'listerchargesocietearchive', component: ListerChargesocietearchiveComponent },
+  { path: 'modifierchargesociete', component: UpdateChargesocieteComponent },
+  { path: 'createchargesalariale', component: CreateChargeSalarialeComponent },
+  { path: 'listerChargesalarialecourant', component: ListeChargeSalarialeComponent }
 ];
 
 @NgModule({

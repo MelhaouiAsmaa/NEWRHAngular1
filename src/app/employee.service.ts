@@ -51,7 +51,7 @@ export class EmployeeService {
     return this.http.get(this.baseUrl + '/getLatestEmployee');
   }
   getAllEmployee(): Observable<any> {
-    return this.http.get(this.baseUrl + '/getLAll');
+    return this.http.get(this.baseUrl + '/getAll');
   }
 
   getActualFunction(id) {
@@ -83,6 +83,9 @@ export class EmployeeService {
   }
   getEmployeeUser(id) {
     return this.http.get(this.baseUrl + '/getEmployeeUser/' + id);
+  }
+  getActualContrat(id) {
+    return this.http.get(this.baseUrl + '/getActualContrat/' + id);
   }
 }
 

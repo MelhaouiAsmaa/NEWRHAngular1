@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Contrat } from '../contrat';
 import { Observable } from 'rxjs';
@@ -8,6 +9,8 @@ import { TypeContrat } from '../typecontrat';
 import { ContratService } from '../contrat.service';
 import { EmployeeService } from '../employee.service';
 import { ContratId } from '../contrat-id';
+import { MatDialog } from '@angular/material';
+import { AlertDialogComponent } from '../shared/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-create-contrat',
@@ -26,10 +29,29 @@ export class CreateContratComponent implements OnInit {
   typescontrats: Observable<any>;
   employees: Observable<Employee[]>;
   submitted = false;
-  constructor(private router: Router, private typecontratservice: TypecontratService, private contratservice: ContratService, private employeeservice: EmployeeService) {
+  constructor(private router: Router,
+    private typecontratservice: TypecontratService,
+    private contratservice: ContratService,
+    private employeeservice: EmployeeService,
+    public dialog: MatDialog,
+    private datePipe: DatePipe) {
+
     this.contrat1.pkContrat = new ContratId();
     this.contrat1.pkContrat.contrat = new TypeContrat();
     this.contrat1.pkContrat.employee = new Employee();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '350px',
+      data: 'Cet employé a déjà un contrat actuellement !'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Ok clicked');
+        //this.router.navigate(['lsterContrat']);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -43,11 +65,16 @@ export class CreateContratComponent implements OnInit {
 
   }
   save() {
-
     this.contrat1.pkContrat.contrat.id_typeC = this.id_contrat;
     this.contrat1.pkContrat.date_Contrat = this.date_contrat;
+    if (!this.contrat1.pkContrat.date_Contrat) {
+      this.contrat1.pkContrat.date_Contrat = new Date();
+    }
     this.contrat1.pkContrat.employee.matricule = this.id_employee;
     this.contrat1.date_Debut = this.date_debut;
+    if (!this.contrat1.date_Debut) {
+      this.contrat1.date_Debut = new Date();
+    }
     this.contrat1.date_Fin = this.date_fin;
     this.contrat1.motif = this.motif;
     if (this.contrat1.motif == null)
@@ -73,8 +100,19 @@ export class CreateContratComponent implements OnInit {
 
   }
   onSubmit() {
-    this.submitted = true;
-    this.save();
+    this.employeeservice.getActualContrat(this.id_employee).subscribe(
+      data => {
+        if (!data) {
+          console.log(data);
+          this.submitted = true;
+          this.save();
+        } else {
+          console.log(data);
+          this.submitted = false;
+          this.openDialog();
+        }
+      }
+    )
 
   }
   gotoList() {

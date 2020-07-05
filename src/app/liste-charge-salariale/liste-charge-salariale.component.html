@@ -1,4 +1,4 @@
-<h2>Historique des salaires</h2>
+<h2>Charges salariales</h2>
 
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -7,6 +7,8 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>Employé</th>
+          <th>Type de charge</th>
           <th>Date de début</th>
           <th>Date de fin</th>
           <th>Type de période</th>
@@ -15,18 +17,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let ch of empcharge; let i = index">
-          <ng-container *ngIf="ch.chargeS.idCharge === 3">
+        <tr *ngFor="let ch of employeecharge; let i = index">
+          <ng-container *ngIf="ch.chargeS.idCharge !== 3">
+            <td>{{ch.employeec.prenom}} {{ch.employeec.nom}}</td>
+            <td>{{ch.chargeS.typeCharge}}</td>
             <td>{{ch.pkChargeemp.dateDebutC}}</td>
             <td>{{ch.dateFinC}}</td>
             <td>{{ch.periode}}</td>
             <td>{{ch.montant}} (DM)</td>
             <td hidden>{{idemp}}</td>
             <td>
-              <button title="Modifer" mat-button (click)="onModifier(idemp, ch.pkChargeemp.dateDebutC)">
+              <button title="Modifer" mat-button
+                (click)="onModifier(ch.employeec.matricule, ch.pkChargeemp.dateDebutC, ch.chargeS.idCharge)">
                 <span class="material-icons">edit</span></button>
 
-              <button title="Supprimer" mat-button (click)="onSupprimer(idemp, ch.pkChargeemp.dateDebutC)">
+              <button title="Supprimer" mat-button
+                (click)="onSupprimer(ch.employeec.matricule, ch.pkChargeemp.dateDebutC, ch.chargeS.idCharge)">
                 <span class="material-icons">delete</span></button>
             </td>
           </ng-container>

@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       this.isLogged = 'true';
       localStorage.setItem('isLoggedIn', this.isLogged);
       this.roles = this.tokenStorage.getUser().roles;
+      console.log(this.roles);
     }
   }
 

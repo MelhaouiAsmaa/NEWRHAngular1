@@ -30,6 +30,10 @@ export class EmployeeChargeService {
     return this.http.post(this.baseUrl + '/delete', idempcharge);
   }
 
+  getAllEmployeeCharge() {
+    return this.http.get(this.baseUrl + '/getAll');
+  }
+
   getReporting(): Observable<any> {
     return this.http.get(`${this.baseUrl}/reporting`);
   }

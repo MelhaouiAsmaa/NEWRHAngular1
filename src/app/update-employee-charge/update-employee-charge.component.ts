@@ -16,6 +16,7 @@ import { EmployeeCharge } from '../employee-charge';
 })
 export class UpdateEmployeeChargeComponent implements OnInit {
 
+  idchg;
   periode: any[] = ['Mensuel', 'Annuel', 'Trimestriel', 'Hebdomadaire', 'Quotidien'];
   idemp;
   chargeEmployeeForm;
@@ -38,10 +39,11 @@ export class UpdateEmployeeChargeComponent implements OnInit {
     this.activatedroute.params.subscribe((param: Params) => {
       this.idemp = param['idemp'];
       this.DateDebutC = param['datedeb'];
+      this.idchg = param['idcharge'];
     });
     this.empchargeId.dateDebutC = this.DateDebutC;
     this.empchargeId.empId = this.idemp;
-    this.empchargeId.chargeId = 3;
+    this.empchargeId.chargeId = this.idchg;
     this.employeechargeservice.getEmployeeCharge(this.empchargeId).subscribe(
       data1 => {
         console.log(data1);
@@ -95,10 +97,11 @@ export class UpdateEmployeeChargeComponent implements OnInit {
   }
 
   OnAnnuler() {
-    this.router.navigate(['employees']);
+    this.router.navigate(['chargesalariale', this.idemp]);
   }
 
   gotolist() {
-    this.router.navigate(['chargesalariale', this.idemp]);
+    this.router.navigate(['employees']);
+    //this.router.navigate(['chargesalariale', this.idemp]);
   }
 }
