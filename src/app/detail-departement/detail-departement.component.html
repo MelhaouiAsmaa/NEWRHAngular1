@@ -1,5 +1,5 @@
 <h2 style="text-align: center;">Département</h2>
-<hr/>
+<hr />
 <div *ngIf="departement" style="margin-left: 100px;">
   <div>
     <label><b>Id_Département: </b></label> {{departement.idDepartement}}
@@ -10,44 +10,53 @@
 
   <div *ngIf="equipe| async">
     <label><b>Equipes: </b></label>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Id_Equipe</th>
-        <th>Nom_Equipe</th>
-    
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let e of equipe | async">
-        <td>{{e.idEquipe}}</td>
-        <td>{{e.nomEquipe}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="responsable">
-    <label><b>Résponsables: </b></label>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Employés</th>
-        <th>Date_Début</th>
-        <th>Date_Fin</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let r of responsable | async">
-        <td>{{r.pk_responsable.employee.matricule}}-{{r.pk_responsable.employee.nom}} {{r.pk_responsable.employee.prenom}}</td>
-        <td>{{r.pk_responsable.date_debut_res | date:'yyyy-MM-dd'}}</td>
-        <td>{{r.date_fin_res | date:'yyyy-MM-dd'}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id_Equipe</th>
+          <th>Nom_Equipe</th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of equipe | async">
+          <td>{{e.idEquipe}}</td>
+          <td>{{e.nomEquipe}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="responsable">
+    <label><b>Résponsables: <button class="btn btn-info">
+          <a (click)="createdepres(departement.idDepartement)"> + Ajouter
+            responsable</a></button></b></label>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Employés</th>
+          <th>Date_Début</th>
+          <th>Date_Fin</th>
+          <th>Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of responsable | async">
+          <td>{{r.pkResponsable.employee.matricule}}-{{r.pkResponsable.employee.nom}}
+            {{r.pkResponsable.employee.prenom}}</td>
+          <td>{{r.pkResponsable.dateDebutRes | date:'yyyy-MM-dd'}}</td>
+          <td>{{r.dateFinRes | date:'yyyy-MM-dd'}}</td>
+          <td><button (click)="delete(r.pkResponsable)" class="btn btn-danger">Supprimer</button>
+            <button
+              (click)="update(r.pkResponsable.departement.idDepartement,r.pkResponsable.employee.matricule,r.pkResponsable.dateDebutRes)"
+              class="btn btn-info" style="margin-left: 10px">Modifier</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <br>
 <br>
-<button  (click)="redirect()" style="margin-left:700px;"class="btn btn-primary">Retourner à  la liste des employés</button><br>
+<button (click)="redirect()" style="margin-left:700px;" class="btn btn-primary">Retourner à  la liste des
+  départements</button><br>

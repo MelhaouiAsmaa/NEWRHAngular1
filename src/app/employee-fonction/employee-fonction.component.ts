@@ -10,6 +10,7 @@ import { EmployeeService } from '../employee.service';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from '../shared/alert-dialog/alert-dialog.component';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-employee-fonction',
@@ -18,6 +19,7 @@ import { AlertDialogComponent } from '../shared/alert-dialog/alert-dialog.compon
 })
 export class EmployeeFonctionComponent implements OnInit {
 
+  emp: Employee = new Employee();
   fonction: any[] = [];
   fctEmployeeForm: FormGroup;
   idemp;
@@ -40,10 +42,18 @@ export class EmployeeFonctionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedroute.params.subscribe((param: Params) => {
+      this.idemp = param['id'];
+    });
     this.fonctionService.getAllfcts().subscribe(
       data => {
         this.fonction = data;
         console.log(data);
+        this.employeeService.getEmployee(this.idemp).subscribe(
+          data1 => {
+            this.emp = data1;
+          }
+        )
         this.fctEmployeeForm = this.formbuilder.group({
           fonctions: [this.fonction, Validators.required],
           dateDebutR: null,

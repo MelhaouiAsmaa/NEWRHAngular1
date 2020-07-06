@@ -10,11 +10,12 @@ import { DepartementService } from '../departement.service';
 })
 export class CreateDepartementComponent implements OnInit {
 
+  dep: any;
   departement: Departement = new Departement();
   submitted = false;
 
   constructor(private departementService: DepartementService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,15 +26,29 @@ export class CreateDepartementComponent implements OnInit {
   }
 
   save() {
-    this.departementService.createDepartement(this.departement)
-    .subscribe(data => console.log(data), error => console.log(error));
-    this.departement = new Departement();
-    this.gotoList();
+    // console.log(this.departement.nomDepartement);
+    this.departementService.createDepartement(this.departement).subscribe(
+      data => {
+        //  console.log(this.departement.nomDepartement);
+
+      },
+      error => {
+        console.log(error);
+      });
+    // console.log(this.departement.nomDepartement);
+
   }
 
   onSubmit() {
     this.submitted = true;
     this.save();
+    this.gotoList();
+    // this.departementService.getDepByName(this.departement.nomDepartement).subscribe(
+    //   data1 => {
+    //     console.log(data1);
+    //     this.dep = data1;
+    //     this.gotoList(this.dep.idDepartement);
+    //   })
   }
 
   gotoList() {

@@ -22,6 +22,12 @@
           </div>
           <div class="card-body">
             <div class="form-group">
+              <label>
+                <li>Matricule: {{idemp}}</li>
+                <li>Employé: {{employee.prenom}} {{employee.nom}}</li>
+              </label>
+            </div>
+            <div class="form-group">
               <label for="equip" class="control-label required"></label>
               <select formControlName="equipes" class="form-control">
                 <option disabled [ngValue]="null" [selected]="true">--choissisez une équipe--</option>
@@ -81,6 +87,10 @@
             <h4>Affecter l'équipe</h4>
           </div>
           <div class="card-body">
+            <label>
+              <li>Matricule: {{idemp}}</li>
+              <li>Employé: {{employee.prenom}} {{employee.nom}}</li>
+            </label>
             <div class="form-group">
               <label for="equip" class="control-label required"></label>
               <select formControlName="equipes" class="form-control">

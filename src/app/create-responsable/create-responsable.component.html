@@ -1,0 +1,44 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Créer Responsable</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <!-- <div class="form-group">
+      <label for="validationCustom03">Département :</label>
+      <select class="form-control form-control-lg" id="validationCustom03" required
+        [(ngModel)]="responsable.pkResponsable.departement.idDepartement" name="id">
+        <option *ngFor="let c of departements | async" [value]="c.idDepartement">
+          {{c.idDepartement}}-{{c.nomDepartement}}</option>
+      </select>
+    </div> -->
+    <div class="form-group">
+      <label for="validationCustom02">Employé:</label>
+      <select class="form-control form-control-lg" id="validationCustom02" required
+        [(ngModel)]="responsable.pkResponsable.employee.matricule" name="matricule">
+        <option value="">Employé...</option>
+        <option *ngFor="let emp of employees | async" value={{emp.matricule}}>{{emp.matricule}}-{{emp.nom}}
+          {{emp.prenom}}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="date1">Date_Début</label>
+      <input type="date" class="form-control" id="date1" required [(ngModel)]="responsable.pkResponsable.dateDebutRes"
+        name="pkContrat.date_Contrat">
+    </div>
+    <div class="form-group">
+      <label for="date2">Date_Fin</label>
+      <input type="date" class="form-control" id="date2" required [(ngModel)]="responsable.dateFinRes" name="date">
+    </div>
+
+    <button type="submit" class="btn btn-success" style="float: right;">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+
+  <!-- <button (click)="gotoList()" class="btn btn-info" style="float: left;">Retour</button> -->
+
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

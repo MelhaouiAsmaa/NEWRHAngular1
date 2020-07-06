@@ -1,3 +1,6 @@
+import { ListerResponsableComponent } from './lister-responsable/lister-responsable.component';
+import { ModifierResponsableComponent } from './modifier-responsable/modifier-responsable.component';
+import { CreateResponsableComponent } from './create-responsable/create-responsable.component';
 import { ListeChargeSalarialeComponent } from './liste-charge-salariale/liste-charge-salariale.component';
 import { CreateChargeSalarialeComponent } from './create-charge-salariale/create-charge-salariale.component';
 import { ListeChargeComponent } from './liste-charge/liste-charge.component';
@@ -72,6 +75,7 @@ import { CreateChargesocieteComponent } from './create-chargesociete/create-char
 import { ListerChargesocieteComponent } from './lister-chargesociete/lister-chargesociete.component';
 import { ListerChargesocietearchiveComponent } from './lister-chargesocietearchive/lister-chargesocietearchive.component';
 import { UpdateChargesocieteComponent } from './update-chargesociete/update-chargesociete.component';
+import { ListerResponsableArchiveComponent } from './lister-responsable-archive/lister-responsable-archive.component';
 
 const routes: Routes = [
 
@@ -149,7 +153,11 @@ const routes: Routes = [
   { path: 'listerchargesocietearchive', component: ListerChargesocietearchiveComponent },
   { path: 'modifierchargesociete', component: UpdateChargesocieteComponent },
   { path: 'createchargesalariale', component: CreateChargeSalarialeComponent },
-  { path: 'listerChargesalarialecourant', component: ListeChargeSalarialeComponent }
+  { path: 'listerChargesalarialecourant', component: ListeChargeSalarialeComponent },
+  { path: 'creerresponsabledepartement/:id', component: CreateResponsableComponent },
+  { path: 'modifierresponsabledepartement', component: ModifierResponsableComponent },
+  { path: 'listerreponsabledepartement', component: ListerResponsableComponent },
+  { path: 'archiveresponsabledepartement', component: ListerResponsableArchiveComponent }
 ];
 
 @NgModule({

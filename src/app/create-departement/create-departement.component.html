@@ -4,7 +4,8 @@
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="DepName">Nom du département </label>
-      <input type="text" class="form-control" required [(ngModel)]="departement.nomDepartement" id="nomDepartement" name="nomDepartement">
+      <input type="text" class="form-control" required [(ngModel)]="departement.nomDepartement" id="nomDepartement"
+        name="nomDepartement">
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>
@@ -12,7 +13,7 @@
 </div>
 
 
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
-</div>
+<!-- <div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4> -->
+<!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+<!-- </div> -->

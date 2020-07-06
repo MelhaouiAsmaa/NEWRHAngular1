@@ -49,4 +49,10 @@ export class DepartementService {
     return this.http.get(`${this.baseUrl2}/getResponsableDepartement/${id}`);
 
   }
+  getEmployeesByDep(id): Observable<any> {
+    return this.http.get(this.baseUrl + '/getEmpolyeesByDep/' + id);
+  }
+  getDepByName(name) {
+    return this.http.get(this.baseUrl + '/getDepByName/' + name);
+  }
 }

@@ -1,0 +1,34 @@
+<h3 style=" margin-top:50px; margin-left: 50px;">Créer Résponsable</h3>
+<div [hidden]="submitted" style="width: 400px; margin-left:50px">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="validationCustom03">Département :</label>
+      {{dept.idDepartement}}- {{dept.nomDepartement}}
+    </div>
+    <div class="form-group">
+      <label for="validationCustom02">Employé:</label>
+      {{nom.matricule}}-{{nom.nom}} {{nom.prenom}}
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="date1">Date_Début:</label>
+      {{responsable.pkResponsable.dateDebutRes}}
+    </div>
+    <div class="form-group">
+      <label for="date2">Date_Fin</label>
+      <input type="date" class="form-control" id="date2" required [(ngModel)]="responsable.dateFinRes" name="date">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
+
+<div [hidden]="!submitted">
+
+  <button (click)="gotoList()" class="btn btn-info">Retour</button>
+
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

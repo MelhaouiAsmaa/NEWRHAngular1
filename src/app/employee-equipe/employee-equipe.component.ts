@@ -1,4 +1,3 @@
-import { TokenStorageService } from './../../../../angular8-springboot-client1/src/app/_services/token-storage.service';
 import { EmployeeEquipeService } from './../employee-equipe.service';
 import { EmployeeEquipeId } from './../employee-equipe-id';
 import { EmployeeEquipe } from './../employee-equipe';
@@ -11,6 +10,8 @@ import { MatDialog } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import { AlertDialogComponent } from '../shared/alert-dialog/alert-dialog.component';
 import { DepartementService } from '../departement.service';
+import { Employee } from '../employee';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-employee-equipe',
@@ -19,6 +20,7 @@ import { DepartementService } from '../departement.service';
 })
 export class EmployeeEquipeComponent implements OnInit {
 
+  employee: Employee = new Employee();
   equipe: any[] = [];
   equipeEmployeeForm: FormGroup;
   idemp;
@@ -65,6 +67,10 @@ export class EmployeeEquipeComponent implements OnInit {
         this.activatedroute.params.subscribe((param: Params) => {
           this.idemp = param['id'];
         });
+        this.employeeService.getEmployee(this.idemp).subscribe(
+          data => {
+            this.employee = data;
+          })
         this.equipeEmployeeForm = this.formbuilder.group({
           equipes: [null, Validators.required],
           dateDebutA: null,

@@ -1,3 +1,4 @@
+import { ModifierResponsableComponent } from './modifier-responsable/modifier-responsable.component';
 import { TokenStorageService } from './_services/token-storage.service';
 import { UserService } from './_services/user.service';
 import { FilterPipe } from './filter.pipe';
@@ -91,6 +92,9 @@ import { ListerChargesocietearchiveComponent } from './lister-chargesocietearchi
 import { UpdateChargesocieteComponent } from './update-chargesociete/update-chargesociete.component';
 import { CreateChargeSalarialeComponent } from './create-charge-salariale/create-charge-salariale.component';
 import { ListeChargeSalarialeComponent } from './liste-charge-salariale/liste-charge-salariale.component';
+import { CreateResponsableComponent } from './create-responsable/create-responsable.component';
+import { ListerResponsableComponent } from './lister-responsable/lister-responsable.component';
+import { ListerResponsableArchiveComponent } from './lister-responsable-archive/lister-responsable-archive.component';
 
 
 @NgModule({
@@ -172,8 +176,12 @@ import { ListeChargeSalarialeComponent } from './liste-charge-salariale/liste-ch
     ListerChargesocietearchiveComponent,
     UpdateChargesocieteComponent,
     CreateChargeSalarialeComponent,
-    ListeChargeSalarialeComponent
-   
+    ListeChargeSalarialeComponent,
+    CreateResponsableComponent,
+    ModifierResponsableComponent,
+    ListerResponsableComponent,
+    ListerResponsableArchiveComponent
+
   ],
   imports: [
     BrowserModule,
